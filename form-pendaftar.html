@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Form Pendaftar PPDB Online SMAN 1 CILOGRANG">
+  <title>Form Pendaftar — PPDB Online SMAN 1 CILOGRANG </title>
+  <link rel="icon" href="assets/img/images.jpg" type="image/jpeg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body data-page="form-pendaftar">
+
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <div class="brand-logo"><img src="assets/img/images.jpg" alt="Logo SMAN 1 CILOGRANG"></div>
+      <div class="brand-text">
+        <strong>PPDB ONLINE</strong>
+        <small class="js-school-name">SMAN 1 CILOGRANG</small>
+      </div>
+      <button class="icon-btn sidebar-close" id="sidebarClose" aria-label="Tutup menu">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <nav class="nav">
+      <p class="nav-label">MENU UTAMA</p>
+      <a class="nav-item" href="index.html" title="Dashboard">
+        <i class="fa-solid fa-gauge-high"></i><span class="nav-text">Dashboard</span>
+      </a>
+
+      <p class="nav-label">DATA PPDB</p>
+      <a class="nav-item active" href="pendaftar.html" title="Calon Peserta Didik">
+        <i class="fa-solid fa-user-group"></i><span class="nav-text">Calon Peserta Didik</span>
+      </a>
+      <a class="nav-item" href="verifikasi.html" title="Verifikasi Berkas">
+        <i class="fa-solid fa-file-circle-check"></i><span class="nav-text">Verifikasi Berkas</span>
+      </a>
+      <a class="nav-item" href="jurusan.html" title="Jurusan">
+        <i class="fa-solid fa-layer-group"></i><span class="nav-text">Jurusan</span>
+      </a>
+
+      <p class="nav-label">LAINNYA</p>
+      <a class="nav-item" href="laporan.html" title="Laporan">
+        <i class="fa-solid fa-file-lines"></i><span class="nav-text">Laporan</span>
+      </a>
+      <a class="nav-item" href="pengaturan.html" title="Pengaturan">
+        <i class="fa-solid fa-gear"></i><span class="nav-text">Pengaturan</span>
+      </a>
+
+      <button class="nav-item nav-logout" id="logoutBtn" title="Logout">
+        <i class="fa-solid fa-right-from-bracket"></i><span class="nav-text">Logout</span>
+      </button>
+    </nav>
+
+    <div class="sidebar-foot">
+      <i class="fa-solid fa-quote-left foot-quote"></i>
+      <div class="foot-text">
+        <strong><span class="foot-dot"></span> SMAN 1 Cilograng</strong>
+        <p>&ldquo;Membangun Generasi Berkarakter dan Berprestasi&rdquo;</p>
+        <small>&copy; <span id="year">2026</span> Copyright PPDB Online</small>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <div class="main">
+    <header class="topbar">
+      <button class="icon-btn" id="menuToggle" aria-label="Buka menu" title="Menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+
+      <form class="search" id="searchForm" role="search" autocomplete="off">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input id="globalSearch" type="search" placeholder="Cari nama, NISN, atau nomor pendaftaran..." aria-label="Cari pendaftar">
+        <kbd>Ctrl + K</kbd>
+      </form>
+
+      <div class="topbar-actions">
+        <div class="dropdown" id="notifDropdown">
+          <button class="icon-btn notif-btn" id="notifBtn" aria-label="Notifikasi" aria-haspopup="true">
+            <i class="fa-regular fa-bell"></i>
+            <span class="dot-count" id="notifCount">0</span>
+          </button>
+          <div class="dropdown-menu" id="notifMenu" role="menu">
+            <div class="dropdown-head">
+              <strong>Notifikasi</strong>
+              <button class="link-sm" id="notifClear" type="button">Tandai dibaca</button>
+            </div>
+            <div class="dropdown-list" id="notifList"></div>
+            <a class="dropdown-foot" href="verifikasi.html">
+              Lihat semua notifikasi <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="dropdown" id="profileDropdown">
+          <button class="profile-btn" id="profileBtn" aria-haspopup="true">
+            <span class="avatar">A</span>
+            <span class="profile-meta">
+              <strong class="js-admin-name">Admin Sekolah</strong>
+              <small>Administrator</small>
+            </span>
+            <i class="fa-solid fa-chevron-down caret"></i>
+          </button>
+          <div class="dropdown-menu dropdown-right">
+            <div class="dropdown-profile">
+              <span class="avatar avatar-sm">A</span>
+              <div class="profile-info">
+                <strong class="js-admin-name">Admin Sekolah</strong>
+                <small class="js-admin-email">admin@sman1cilograng.sch.id</small>
+                <span class="role-chip">Administrator</span>
+              </div>
+            </div>
+            <a class="dropdown-item" href="pengaturan.html"><i class="fa-solid fa-user-gear"></i> Pengaturan Akun</a>
+            <a class="dropdown-item" href="laporan.html"><i class="fa-solid fa-file-export"></i> Laporan PPDB</a>
+            <div class="dropdown-divider"></div>
+            <button class="dropdown-item danger" id="profileLogout" type="button">
+              <i class="fa-solid fa-right-from-bracket"></i> Keluar
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="content">
+      <div class="page-head">
+        <div>
+          <h1 id="formTitle">Tambah Pendaftar</h1>
+          <p id="formSubtitle">Isi data calon peserta didik dengan benar.</p>
+        </div>
+        <a class="btn" href="pendaftar.html"><i class="fa-solid fa-arrow-left"></i> Kembali</a>
+      </div>
+
+      <form id="pendaftarForm" novalidate>
+        <section class="card">
+          <div class="card-header">
+            <div>
+              <h2>Data Diri Calon Peserta Didik</h2>
+              <p>Semua tanda (*) wajib diisi.</p>
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <div class="field" id="field-nama">
+              <label for="nama">Nama Lengkap *</label>
+              <input class="input" id="nama" name="nama" placeholder="Contoh: Ahmad Fauzan">
+              <span class="field-error">Nama minimal 3 karakter.</span>
+            </div>
+
+            <div class="field" id="field-nisn">
+              <label for="nisn">NISN *</label>
+              <input class="input" id="nisn" name="nisn" inputmode="numeric" maxlength="10" placeholder="10 digit angka">
+              <span class="field-error">NISN harus terdiri dari 10 digit angka.</span>
+            </div>
+
+            <div class="field" id="field-jeniskelamin">
+              <label for="jeniskelamin">Jenis Kelamin *</label>
+              <select class="select" id="jeniskelamin" name="jenis_kelamin">
+                <option value="">Pilih jenis kelamin</option>
+                <option>Laki-laki</option>
+                <option>Perempuan</option>
+              </select>
+              <span class="field-error">Pilih jenis kelamin.</span>
+            </div>
+
+            <div class="field" id="field-asalsekolah">
+              <label for="asal_sekolah">Asal Sekolah *</label>
+              <input class="input" id="asal_sekolah" name="asal_sekolah" placeholder="Contoh: SMPN 1 Cilograng">
+              <span class="field-error">Asal sekolah wajib diisi.</span>
+            </div>
+
+            <div class="field" id="field-jurusan">
+              <label for="jurusan">Jurusan *</label>
+              <select class="select" id="jurusan" name="jurusan">
+                <option value="">Pilih jurusan</option>
+              </select>
+              <span class="field-error">Pilih jurusan.</span>
+            </div>
+
+            <div class="field" id="field-status">
+              <label for="status">Status</label>
+              <select class="select" id="status" name="status">
+                <option>Menunggu</option>
+                <option>Terverifikasi</option>
+                <option>Diterima</option>
+                <option>Ditolak</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-foot">
+            <a class="btn" href="pendaftar.html">Batal</a>
+            <button class="btn btn-primary" type="submit">
+              <i class="fa-solid fa-floppy-disk"></i> <span id="submitLabel">Simpan Data</span>
+            </button>
+          </div>
+        </section>
+      </form>
+    </main>
+
+    <footer class="app-footer">
+      © <span id="yearFooter"></span> <span class="js-school-name">SMAN 1 CILOGRANG</span> · Admin Panel PPDB Online
+    </footer>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/form-pendaftar.js"></script>
+</body>
+</html>

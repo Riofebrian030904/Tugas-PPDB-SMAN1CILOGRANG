@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Login Admin Panel PPDB Online SMAN 1 CILOGRANG">
+  <title>Login — PPDB Online SMAN 1 CILOGRANG</title>
+  <link rel="icon" href="assets/img/images.jpg" type="image/jpeg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body data-page="login" class="login-page">
+
+  <div class="login-wrap">
+    <div class="login-card">
+      <div class="login-logo">
+        <img src="assets/img/images.jpg" alt="Logo SMAN 1 CILOGRANG">
+      </div>
+      <h1>Masuk Admin</h1>
+      <p>PPDB Online · <span class="js-school-name">SMAN 1 CILOGRANG</span></p>
+
+      <form id="loginForm" novalidate>
+        <div class="field" id="fieldUsername">
+          <label for="username">Username</label>
+          <input class="input" id="username" name="username" placeholder="Masukkan username" autocomplete="username">
+          <span class="field-error">Username wajib diisi.</span>
+        </div>
+
+        <div class="field" id="fieldPassword">
+          <label for="password">Password</label>
+          <input class="input" type="password" id="password" name="password" placeholder="Masukkan password" autocomplete="current-password">
+          <span class="field-error">Password wajib diisi.</span>
+        </div>
+
+        <button class="btn btn-primary btn-block" type="submit">
+          <i class="fa-solid fa-right-to-bracket"></i> Masuk
+        </button>
+      </form>
+
+      <div class="login-hint">
+        Akun demo — Username: <b>admin</b> · Password: <b>admin123</b>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/login.js"></script>
+</body>
+</html>

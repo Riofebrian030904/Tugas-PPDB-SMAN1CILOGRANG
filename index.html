@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Dashboard Admin Panel PPDB Online SMAN 1 CILOGRANG">
+  <title>Dashboard — PPDB Online SMAN 1 CILOGRANG</title>
+  <link rel="icon" href="assets/img/images.jpg" type="image/jpeg">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body data-page="dashboard">
+
+  <!-- ============================= SIDEBAR ============================= -->
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <div class="brand-logo"><img src="assets/img/images.jpg" alt="Logo SMAN 1 CILOGRANG"></div>
+      <div class="brand-text">
+        <strong>PPDB ONLINE</strong>
+        <small class="js-school-name">SMAN 1 CILOGRANG</small>
+      </div>
+      <button class="icon-btn sidebar-close" id="sidebarClose" aria-label="Tutup menu">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <nav class="nav">
+      <p class="nav-label">MENU UTAMA</p>
+      <a class="nav-item active" href="index.html" title="Dashboard">
+        <i class="fa-solid fa-gauge-high"></i><span class="nav-text">Dashboard</span>
+      </a>
+
+      <p class="nav-label">DATA PPDB</p>
+      <a class="nav-item" href="pendaftar.html" title="Calon Peserta Didik">
+        <i class="fa-solid fa-user-group"></i><span class="nav-text">Calon Peserta Didik</span>
+      </a>
+      <a class="nav-item" href="verifikasi.html" title="Verifikasi Berkas">
+        <i class="fa-solid fa-file-circle-check"></i><span class="nav-text">Verifikasi Berkas</span>
+      </a>
+      <a class="nav-item" href="jurusan.html" title="Jurusan">
+        <i class="fa-solid fa-layer-group"></i><span class="nav-text">Jurusan</span>
+      </a>
+
+      <p class="nav-label">LAINNYA</p>
+      <a class="nav-item" href="laporan.html" title="Laporan">
+        <i class="fa-solid fa-file-lines"></i><span class="nav-text">Laporan</span>
+      </a>
+      <a class="nav-item" href="pengaturan.html" title="Pengaturan">
+        <i class="fa-solid fa-gear"></i><span class="nav-text">Pengaturan</span>
+      </a>
+
+      <button class="nav-item nav-logout" id="logoutBtn" title="Logout">
+        <i class="fa-solid fa-right-from-bracket"></i><span class="nav-text">Logout</span>
+      </button>
+    </nav>
+
+    <div class="sidebar-foot">
+      <i class="fa-solid fa-quote-left foot-quote"></i>
+      <div class="foot-text">
+        <strong><span class="foot-dot"></span> SMAN 1 Cilograng</strong>
+        <p>“Membangun Generasi Berkarakter dan Berprestasi”</p>
+        <small>© <span id="year">2026</span> Copyright PPDB Online</small>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <!-- =============================== MAIN =============================== -->
+  <div class="main">
+
+    <!-- ---------- Top Header ---------- -->
+    <header class="topbar">
+      <button class="icon-btn" id="menuToggle" aria-label="Buka menu" title="Menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+
+      <form class="search" id="searchForm" role="search" autocomplete="off">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input id="globalSearch" type="search" placeholder="Cari nama, NISN, atau nomor pendaftaran..." aria-label="Cari pendaftar">
+        <kbd>Ctrl + K</kbd>
+      </form>
+
+      <div class="topbar-actions">
+        <!-- Notifikasi -->
+        <div class="dropdown" id="notifDropdown">
+          <button class="icon-btn notif-btn" id="notifBtn" aria-label="Notifikasi" aria-haspopup="true">
+            <i class="fa-regular fa-bell"></i>
+            <span class="dot-count" id="notifCount">0</span>
+          </button>
+          <div class="dropdown-menu" id="notifMenu" role="menu">
+            <div class="dropdown-head">
+              <strong>Notifikasi</strong>
+              <button class="link-sm" id="notifClear" type="button">Tandai dibaca</button>
+            </div>
+            <div class="dropdown-list" id="notifList"></div>
+            <a class="dropdown-foot" href="verifikasi.html">
+              Lihat semua notifikasi <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Profil -->
+        <div class="dropdown" id="profileDropdown">
+          <button class="profile-btn" id="profileBtn" aria-haspopup="true">
+            <span class="avatar">A</span>
+            <span class="profile-meta">
+              <strong class="js-admin-name">Admin Sekolah</strong>
+              <small>Administrator</small>
+            </span>
+            <i class="fa-solid fa-chevron-down caret"></i>
+          </button>
+          <div class="dropdown-menu dropdown-right">
+            <div class="dropdown-profile">
+              <span class="avatar avatar-sm">A</span>
+              <div class="profile-info">
+                <strong class="js-admin-name">Admin Sekolah</strong>
+                <small class="js-admin-email">admin@sman1cilograng.sch.id</small>
+                <span class="role-chip">Administrator</span>
+              </div>
+            </div>
+            <a class="dropdown-item" href="pengaturan.html"><i class="fa-solid fa-user-gear"></i> Pengaturan Akun</a>
+            <a class="dropdown-item" href="laporan.html"><i class="fa-solid fa-file-export"></i> Laporan PPDB</a>
+            <div class="dropdown-divider"></div>
+            <button class="dropdown-item danger" id="profileLogout" type="button">
+              <i class="fa-solid fa-right-from-bracket"></i> Keluar
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- ---------- Content ---------- -->
+    <main class="content">
+
+      <!-- Hero / Welcome Banner -->
+      <section class="hero" id="heroBanner">
+        <span class="hero-orb hero-orb-1" aria-hidden="true"></span>
+        <span class="hero-orb hero-orb-2" aria-hidden="true"></span>
+        <span class="hero-orb hero-orb-3" aria-hidden="true"></span>
+
+        <div class="hero-content">
+          <span class="hero-eyebrow"><i class="fa-solid fa-hand-sparkles"></i> Selamat Datang,</span>
+          <h1 class="js-admin-name">Admin Sekolah</h1>
+          <p>Kelola data pendaftaran PPDB Online <strong class="js-school-name">SMAN 1 CILOGRANG</strong> dengan mudah, cepat dan aman.</p>
+          <div class="hero-meta">
+            <span class="hero-pill">
+              <i class="fa-solid fa-calendar-days"></i>
+              Tahun Ajaran <b class="js-school-year">2026/2027</b>
+            </span>
+            <span class="hero-pill">
+              <span class="pulse"></span> Sistem Aktif
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Statistics -->
+      <section class="stats-grid">
+        <article class="stat-card">
+          <div class="stat-icon si-blue"><i class="fa-solid fa-users"></i></div>
+          <div class="stat-body">
+            <span class="stat-label">Total Pendaftar</span>
+            <strong class="stat-value" id="statTotal">0</strong>
+            <span class="stat-trend up" id="trendTotal">
+              <span class="delta"><i class="fa-solid fa-arrow-up"></i> 12%</span>
+              <em>dari periode sebelumnya</em>
+            </span>
+          </div>
+        </article>
+
+        <article class="stat-card">
+          <div class="stat-icon si-green"><i class="fa-solid fa-circle-check"></i></div>
+          <div class="stat-body">
+            <span class="stat-label">Verifikasi Berkas</span>
+            <strong class="stat-value" id="statVerified">0</strong>
+            <span class="stat-trend up" id="trendVerified">
+              <span class="delta"><i class="fa-solid fa-arrow-up"></i> 8%</span>
+              <em>sudah diverifikasi</em>
+            </span>
+          </div>
+        </article>
+
+        <article class="stat-card">
+          <div class="stat-icon si-orange"><i class="fa-solid fa-file-lines"></i></div>
+          <div class="stat-body">
+            <span class="stat-label">Menunggu Verifikasi</span>
+            <strong class="stat-value" id="statPending">0</strong>
+            <span class="stat-trend down" id="trendPending">
+              <span class="delta"><i class="fa-solid fa-arrow-down"></i> 3%</span>
+              <em>belum diverifikasi</em>
+            </span>
+          </div>
+        </article>
+
+        <article class="stat-card">
+          <div class="stat-icon si-violet"><i class="fa-solid fa-graduation-cap"></i></div>
+          <div class="stat-body">
+            <span class="stat-label">Diterima</span>
+            <strong class="stat-value" id="statAccepted">0</strong>
+            <span class="stat-trend up" id="trendAccepted">
+              <span class="delta"><i class="fa-solid fa-arrow-up"></i> 5%</span>
+              <em>lolos seleksi</em>
+            </span>
+          </div>
+        </article>
+      </section>
+
+      <!-- Content Area: grafik + pendaftar terbaru -->
+      <section class="panel-grid">
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <h2>Grafik Pendaftaran</h2>
+              <p id="chartSubtitle">Jumlah pendaftar dalam 7 hari terakhir</p>
+            </div>
+            <label class="select-wrap">
+              <select class="select" id="rangeSelect" aria-label="Rentang waktu grafik">
+                <option value="7">7 Hari Terakhir</option>
+                <option value="14">14 Hari Terakhir</option>
+                <option value="30">30 Hari Terakhir</option>
+              </select>
+              <i class="fa-solid fa-chevron-down"></i>
+            </label>
+          </div>
+          <div class="chart-box" id="chartBox">
+            <canvas id="registrationChart"></canvas>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <h2>Pendaftar Terbaru</h2>
+              <p>Daftar calon peserta didik yang baru mendaftar.</p>
+            </div>
+            <a class="btn btn-ghost" href="pendaftar.html">Lihat Semua <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+          <div class="table-wrap">
+            <table class="table table-compact">
+              <thead>
+                <tr>
+                  <th>No</th>
+                  <th>Nama</th>
+                  <th>NISN</th>
+                  <th>Jurusan</th>
+                  <th>Status</th>
+                  <th>Tanggal</th>
+                </tr>
+              </thead>
+              <tbody id="recentBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- Quick Action -->
+      <section class="quick-section">
+        <div class="section-head">
+          <div>
+            <h2>Akses Cepat</h2>
+            <p>Shortcut menuju fitur yang paling sering digunakan.</p>
+          </div>
+        </div>
+
+        <div class="quick-grid">
+          <a class="quick-card" href="pendaftar.html">
+            <span class="quick-icon qi-blue"><i class="fa-solid fa-users-gear"></i></span>
+            <span class="quick-body">
+              <strong>Kelola Pendaftar</strong>
+              <small>Lihat, edit dan kelola data calon peserta didik</small>
+            </span>
+            <span class="quick-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+          </a>
+
+          <a class="quick-card" href="verifikasi.html">
+            <span class="quick-icon qi-orange"><i class="fa-solid fa-clipboard-check"></i></span>
+            <span class="quick-body">
+              <strong>Verifikasi Berkas</strong>
+              <small>Cek dan validasi berkas pendaftar</small>
+            </span>
+            <span class="quick-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+          </a>
+
+          <a class="quick-card" href="jurusan.html">
+            <span class="quick-icon qi-violet"><i class="fa-solid fa-shapes"></i></span>
+            <span class="quick-body">
+              <strong>Kelola Jurusan</strong>
+              <small>Atur jurusan, kuota dan informasi jurusan</small>
+            </span>
+            <span class="quick-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+          </a>
+
+          <a class="quick-card" href="laporan.html">
+            <span class="quick-icon qi-green"><i class="fa-solid fa-file-arrow-down"></i></span>
+            <span class="quick-body">
+              <strong>Laporan</strong>
+              <small>Unduh laporan pendaftaran dan hasil seleksi</small>
+            </span>
+            <span class="quick-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <span>© <span id="yearFooter">2026</span> <span class="js-school-name">SMAN 1 CILOGRANG</span> · Admin Panel PPDB Online</span>
+      <span class="footer-note"><i class="fa-solid fa-shield-halved"></i> Data tersimpan aman di perangkat / server sekolah</span>
+    </footer>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

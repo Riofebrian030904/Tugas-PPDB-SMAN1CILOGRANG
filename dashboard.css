@@ -1,0 +1,329 @@
+/* ==========================================================
+   PPDB ONLINE — DASHBOARD KHUSUS (index.html)
+   ---------------------------------------------------------
+   Design system bersama ada di css/app.css (wajib dimuat
+   lebih dahulu). File ini hanya berisi komponen spesifik
+   dashboard: hero banner, trend statistik, panel grafik,
+   dan akses cepat.
+   ========================================================== */
+
+/* ---------- 1. Hero / Welcome Banner ---------- */
+.hero {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  min-height: 196px;
+  display: flex;
+  align-items: center;
+  padding: 32px 36px;
+  border-radius: var(--r-lg);
+  color: #fff;
+  background: linear-gradient(115deg, #123A8F 0%, #1D5BD6 46%, #2F7BFF 100%);
+  background-size: 165% 165%;
+  background-position: 0% 50%;
+  box-shadow: 0 14px 34px rgba(21, 63, 145, 0.24);
+  animation: heroGradient 18s ease-in-out infinite alternate;
+}
+
+/* Gradien bergeser perlahan agar banner terasa "hidup" */
+@keyframes heroGradient {
+  from { background-position: 0% 50%; }
+  to { background-position: 100% 50%; }
+}
+
+/* Logo sekolah sebagai latar banner (di-mask membulat) */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: -6%;
+  z-index: 0;
+  background-image: url("../assets/img/logosma.jpg");
+  background-repeat: no-repeat;
+  background-size: 330px;
+  background-position: right 4% center;
+  opacity: 0.17;
+  -webkit-mask-image: radial-gradient(circle at 86% 50%, #000 0%, #000 34%, transparent 66%);
+  mask-image: radial-gradient(circle at 86% 50%, #000 0%, #000 34%, transparent 66%);
+  pointer-events: none;
+  /* parallax (diatur dari JS) + napas perlahan */
+  translate: var(--parallax-x, 0px) var(--parallax-y, 0px);
+  transition: translate 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
+  animation: heroLogoBreathe 15s ease-in-out infinite;
+}
+
+/* Logo bernapas & bergeser pelan (gerak latar yang halus) */
+@keyframes heroLogoBreathe {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); opacity: 0.15; }
+  50% { transform: translate3d(-18px, -12px, 0) scale(1.07); opacity: 0.26; }
+}
+
+/* Garis diagonal halus (statis sebagai tekstur) */
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image: repeating-linear-gradient(
+    -55deg,
+    rgba(255, 255, 255, 0.06) 0px,
+    rgba(255, 255, 255, 0.06) 1px,
+    transparent 1px,
+    transparent 16px
+  );
+  pointer-events: none;
+}
+
+/* ---------- Orb melayang (depth & gerak halus) ---------- */
+.hero-orb {
+  position: absolute;
+  z-index: 1;
+  border-radius: 50%;
+  pointer-events: none;
+  will-change: transform;
+}
+.hero-orb-1 {
+  width: 280px;
+  height: 280px;
+  right: -70px;
+  top: -95px;
+  background: radial-gradient(circle at 35% 35%, rgba(255, 255, 255, 0.34), rgba(255, 255, 255, 0) 68%);
+  translate: var(--parallax-x, 0px) var(--parallax-y, 0px);
+  transition: translate 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
+  animation: orbA 13s ease-in-out infinite;
+}
+.hero-orb-2 {
+  width: 210px;
+  height: 210px;
+  right: 24%;
+  bottom: -115px;
+  background: radial-gradient(circle at 50% 50%, rgba(147, 197, 253, 0.42), rgba(147, 197, 253, 0) 70%);
+  animation: orbB 16s ease-in-out infinite;
+}
+.hero-orb-3 {
+  width: 160px;
+  height: 160px;
+  left: 4%;
+  top: -80px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0) 70%);
+  animation: orbC 19s ease-in-out infinite;
+}
+
+@keyframes orbA {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(-28px, 26px, 0) scale(1.1); }
+}
+@keyframes orbB {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(32px, -24px, 0) scale(1.14); }
+}
+@keyframes orbC {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(24px, 20px, 0) scale(1.06); }
+}
+
+.hero-content { position: relative; z-index: 2; max-width: 720px; }
+
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  font-size: 12.4px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.hero h1 {
+  font-size: 31px;
+  line-height: 1.25;
+  font-weight: 700;
+  letter-spacing: -0.4px;
+  margin: 15px 0 8px;
+}
+
+.hero p {
+  color: rgba(255, 255, 255, 0.86);
+  font-size: 14.4px;
+  max-width: 640px;
+  margin-bottom: 18px;
+}
+.hero p strong { color: #fff; font-weight: 600; }
+
+.hero-meta { display: flex; flex-wrap: wrap; gap: 10px; }
+
+.hero-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 15px;
+  border-radius: 11px;
+  background: rgba(6, 20, 52, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  font-size: 12.7px;
+  font-weight: 500;
+}
+.hero-pill i { color: #AFCBFF; font-size: 13px; }
+.hero-pill b { font-weight: 700; }
+
+.pulse {
+  width: 8px;
+  height: 8px;
+  min-width: 8px;
+  border-radius: 50%;
+  background: #22C55E;
+  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.25);
+}
+
+/* ---------- 2. Trend Statistik ---------- */
+.stat-trend {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  font-size: 11.6px;
+  color: var(--muted);
+}
+.stat-trend .delta {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 11.2px;
+  font-weight: 700;
+}
+.stat-trend .delta i { font-size: 9px; }
+.stat-trend.up .delta { background: var(--green-soft); color: #15803D; }
+.stat-trend.down .delta { background: var(--danger-soft); color: #DC2626; }
+.stat-trend em { font-style: normal; }
+
+/* ---------- 3. Panel Grafik + Pendaftar Terbaru ---------- */
+.panel-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+
+.chart-box { position: relative; height: 320px; }
+
+.select-wrap { position: relative; display: inline-flex; align-items: center; }
+.select-wrap > i {
+  position: absolute;
+  right: 13px;
+  font-size: 10px;
+  color: var(--muted);
+  pointer-events: none;
+}
+.select-wrap .select { padding-right: 34px; font-size: 12.7px; font-weight: 500; }
+
+/* ---------- 4. Akses Cepat ---------- */
+.quick-section { display: flex; flex-direction: column; gap: 16px; padding-bottom: 6px; }
+
+.quick-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
+
+.quick-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.quick-card:hover {
+  box-shadow: var(--shadow-md);
+  border-color: #CBDBFA;
+}
+
+.quick-icon {
+  width: 46px;
+  height: 46px;
+  min-width: 46px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  font-size: 17px;
+}
+.qi-blue { background: var(--primary-soft); color: var(--primary); }
+.qi-orange { background: var(--orange-soft); color: var(--orange); }
+.qi-violet { background: var(--violet-soft); color: var(--violet); }
+.qi-green { background: var(--green-soft); color: var(--green); }
+
+.quick-body { flex: 1; min-width: 0; }
+.quick-body strong { display: block; font-size: 13.7px; font-weight: 600; color: var(--ink); }
+.quick-body small {
+  display: block;
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 11.7px;
+  line-height: 1.5;
+}
+
+.quick-arrow {
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  border-radius: 50%;
+  background: var(--bg);
+  color: var(--muted);
+  display: grid;
+  place-items: center;
+  font-size: 12px;
+  transition: background var(--ease), color var(--ease);
+}
+.quick-card:hover .quick-arrow { background: var(--primary); color: #fff; }
+
+/* ==========================================================
+   5. RESPONSIVE (dashboard)
+   ========================================================== */
+@media (max-width: 1320px) {
+  .quick-body small { font-size: 11.3px; }
+}
+
+@media (max-width: 1180px) {
+  .quick-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 1100px) {
+  .panel-grid { grid-template-columns: minmax(0, 1fr); }
+  .chart-box { height: 300px; }
+}
+
+@media (max-width: 992px) {
+  .hero { padding: 28px 26px; }
+  .hero h1 { font-size: 27px; }
+}
+
+@media (max-width: 760px) {
+  .hero { padding: 24px 20px; border-radius: 18px; min-height: 0; }
+  .hero h1 { font-size: 24px; }
+  .hero p { font-size: 13.4px; }
+  .hero::before { background-size: 240px; opacity: 0.14; }
+  .quick-grid { grid-template-columns: minmax(0, 1fr); }
+  .chart-box { height: 260px; }
+}
+
+@media (max-width: 420px) {
+  .hero-eyebrow { font-size: 11.6px; }
+  .hero-pill { padding: 7px 12px; font-size: 12px; }
+}
+
+/* ==========================================================
+   6. REDUCED MOTION (khusus gerakan hero) & PRINT
+   ========================================================== */
+@media (prefers-reduced-motion: reduce) {
+  .hero, .hero::before, .hero-orb, .pulse { animation: none !important; }
+  .hero { animation: none !important; }
+}
+
+@media print {
+  .quick-section, .panel-grid { display: none !important; }
+  .hero { box-shadow: none; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
